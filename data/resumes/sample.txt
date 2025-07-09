@@ -1,0 +1,3 @@
+John Doe
+Data Analyst with 2 years of experience.
+Skills: Python, SQL, Power BI, Excel

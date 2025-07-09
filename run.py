@@ -1,13 +1,24 @@
 # run.py
-
-from utils.exceptions import handle_exception, WorkflowExecutionError
-
+from agents.coordinator_agent import CoordinatorAgent
+import os
 def main():
-    try:
-        5/0
-        
-    except Exception as e:
-        handle_exception(e, context="run.py > main()")
+    coordinator = CoordinatorAgent()
+    file_path = os.path.join("data", "resumes", "sample.txt")
+
+    task = {
+        "task_type" : "screen_resume",
+        "payload": {
+            "file_path" : file_path,
+
+        }
+    }
+
+    result = coordinator.dispatch(task['task_type'], task["payload"])
+    print("\n📄 Task Result:")
+
+    if result:
+        for k, v in result.items():
+            print(f"{k.capitalize()}: {v}")
 
 if __name__ == "__main__":
     main()
